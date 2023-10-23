@@ -3,8 +3,8 @@ from django.template import loader
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
-from .models import Leches
-from .forms import LecheFormulario
+from .models import Leches, Galletitas
+from .forms import LecheFormulario, GalleFormulario
 
 @login_required
 def catalo(request):
@@ -79,7 +79,8 @@ def signup(request):
 def leches(request):
      milk= Leches.objects.all()
      contexto={"milk":milk}
-     return render(request, "Distri/cati.html", contexto)   
+     return render(request, "Distri/catalogo.html", contexto)   
+
 
 
  
@@ -99,3 +100,26 @@ def catalogo(request):
             miFormulario = LecheFormulario()
  
       return render(request, "Distri/catalogo.html", {"miFormulario": miFormulario})
+
+def galles(request):
+     galle= Galletitas.objects.all()
+     contexto={"galle":galle}
+     return render(request, "Distri/catalogo2.html", contexto)
+
+
+def agregalle(request):
+ 
+      if request.method == "POST":
+ 
+            miformulario = GalleFormulario(request.POST) # Aqui me llega la informacion del html
+            print(miformulario)
+ 
+            if miformulario.is_valid:
+                  informacion = miformulario.cleaned_data
+                  galle = Galletitas(marca=informacion["marca"], precio =informacion["precio"],email=informacion["email"])
+                  galle.save()
+                  return render(request, "Distri/inicio.html")
+      else:
+            miformulario = GalleFormulario()
+ 
+      return render(request, "Distri/catalogo2.html", {"miformulario": miformulario})

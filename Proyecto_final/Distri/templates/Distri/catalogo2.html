@@ -1,0 +1,46 @@
+
+
+
+{% extends "Distri/base.html" %}
+
+{% load static %}
+
+
+    {% block cuerpo %}
+
+    <br><br><br><br><br>
+
+                    <body>
+                        <div class="row">
+                        <div class="-lg-4 ms-auto"><p class="lead">Galletitas</p></div>
+                        </div>
+
+                       <br>
+                
+                      <ul>
+                          {% for j in galle %}
+                              <li>
+                                  Marca:  {{j.marca}}<br>Precio:  ${{j.precio}}<br>Email:  {{j.email}}
+
+                              </li>
+                          {% endfor %}
+                      </ul>
+
+                    </body>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="{% url 'agregalle'%}">Agregar productos</a></li>
+
+                    <body>
+                        <form action=""    method="POST">{% csrf_token %}
+                            <table> 
+                    
+                               {{ miformulario.as_table}}
+                    
+                            </table> 
+                            <input type = "submit" value="Enviar">
+                         </form>   
+                    </body>
+
+
+
+
+     {% endblock cuerpo %}
