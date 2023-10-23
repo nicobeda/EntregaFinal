@@ -1,0 +1,20 @@
+{% extends "Distri/base.html" %}
+
+{% load static %}
+
+{% block cuerpo %}
+<br><br><br><br><br>
+<h2>
+    {{ mensaje }}
+</h2>
+
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Registrarse</button>
+    </form>
+</body>
+</html>
+
+
+{% endblock cuerpo %}   
