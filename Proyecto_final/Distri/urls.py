@@ -15,4 +15,6 @@ urlpatterns = [
     path('cat/', views.leches, name = "catalogo"),
     path('cat2/', views.galles, name = "catalogo2"),
     path('cato/', views.agregalle, name = "agregalle"),
+
+    path('edit/', views.editarPerfil, name = "edit"),
 ]
